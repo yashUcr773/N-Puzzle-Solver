@@ -12,6 +12,7 @@ import { BoardComponent } from './components/board/board.component';
 import { SolverComponent } from './components/solver/solver.component';
 import { PlayerComponent } from './components/player/player.component';
 import { MainComponent } from './components/main/main.component';
+import { BoardHelperService } from './services/board-helper.service';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,7 @@ import { MainComponent } from './components/main/main.component';
         BrowserModule,
         AppRoutingModule
     ],
-    providers: [AppHelperService],
+    providers: [AppHelperService, BoardHelperService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
