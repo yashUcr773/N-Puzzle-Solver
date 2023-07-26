@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { BoardHelperService } from 'src/app/services/board-helper.service';
 
 @Component({
     selector: 'app-board',
@@ -23,10 +24,12 @@ export class BoardComponent implements OnInit {
     @Input()
     displayPuzzle = false
 
+    @Output() solvedEvent = new EventEmitter<boolean>();
+
     rowSize: number = 3;
 
 
-    constructor() {
+    constructor(private boardHelperService: BoardHelperService) {
     }
 
 
@@ -61,6 +64,12 @@ export class BoardComponent implements OnInit {
         if (blankIndex != -1) {
             this.puzzleState[blankIndex] = this.puzzleState[index]
             this.puzzleState[index] = 0
+        }
+
+        if (this.boardHelperService.checkIfSolved(this.puzzleState, this.solutionState)) {
+            this.solvedEvent.emit(true)
+        } else {
+            this.solvedEvent.emit(false)
         }
 
     }
