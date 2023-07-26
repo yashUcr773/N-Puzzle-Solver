@@ -1,0 +1,148 @@
+.main-container {
+
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 16px;
+
+    @media (min-width: 700px) {
+        width: 90%;
+    }
+
+    @media (min-width: 900px) {
+        width: 85%;
+    }
+
+    @media (min-width: 1200px) {
+        width: 80%;
+    }
+
+    #external_link {
+        display: none;
+    }
+}
+
+.parent {
+    .header {
+        .title {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 32px;
+
+            @media (min-width: 500px) {
+                flex-direction: row;
+                align-items: center;
+                gap: 32px;
+            }
+
+            h1 {
+                margin: 0;
+            }
+
+            .links-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 16px;
+
+                .github {
+                    width: 32px;
+                    height: 32px;
+
+                    &:hover {
+                        cursor: pointer;
+
+                        svg {
+                            stroke: #8d9194;
+                        }
+                    }
+                }
+
+                .more {
+                    .svg-logo-circle {
+                        stroke-width: 2px;
+                        width: 48px;
+                        height: 48px;
+
+                        .logo-circle {
+                            stroke: var(--text_color);
+                            stroke-width: 6px;
+                        }
+
+                        .logo-name {
+                            fill: var(--text_color);
+                            stroke: var(--text_color);
+                            transform: translate(30%, 22%);
+                        }
+
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+
+                        .svg-logo-circle {
+
+                            .logo-circle {
+                                stroke: #8d9194;
+                            }
+
+                            .logo-name {
+                                fill: #8d9194;
+                                stroke: #8d9194;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-height: 350px;
+            overflow: hidden;
+            overflow-y: auto;
+
+            @media (min-width:600px) {
+                flex-direction: row;
+            }
+
+            .desc {
+                flex: 1 1 0;
+
+                .desc-title {
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+
+            }
+
+            .rules {
+                flex: 1 1 0;
+
+                .rules-title {
+                    margin-bottom: 8px;
+                    font-weight: 700;
+
+                }
+
+                .rules-body {
+                    ul {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .content {
+        .mode-selector {}
+
+        .content-body {}
+    }
+}
