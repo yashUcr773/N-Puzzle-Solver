@@ -1,5 +1,7 @@
 # NPuzzleSolverProject
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/816200a1-2e39-4d12-810d-ae67ec0b4aea/deploy-status)](https://app.netlify.com/sites/n-puzzle-solver/deploys)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
 
 ## Development server
