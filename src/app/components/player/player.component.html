@@ -1,0 +1,20 @@
+<div class="content-container">
+    <div class="header-container">
+        <div class="title">
+            <p>Generate a random puzzle and try solving it!</p>
+        </div>
+        <div class="input-container">
+            <div class="text">
+                <input placeholder="Enter puzzle size (9,16..)" type="text" name="text" class="input"
+                    id="player-puzzle-size-input">
+                <p class="input-error" *ngIf="showPuzzleError">Puzzle size should be perfect square</p>
+            </div>
+            <button class="generate-button" (click)="generatePuzzle()">Generate</button>
+        </div>
+
+    </div>
+    <div class="board-container" *ngIf="displayPuzzle">
+        <app-board #board [puzzleSize]=puzzleSize [puzzleState]=puzzleState [solutionState]=solutionState
+            [solutionState]=solutionState [displayPuzzle]=displayPuzzle></app-board>
+    </div>
+</div>
