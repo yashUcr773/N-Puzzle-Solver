@@ -30,6 +30,11 @@
                     padding: 8px;
                     font-size: 20px;
                     transform: all 200ms;
+                    width: 100%;
+
+                    @media (min-width:350px) {
+                        width: fit-content;
+                    }
 
                     &:focus {
                         box-shadow: 0 0 48px rgb(255, 255, 255);
@@ -58,5 +63,15 @@
 
     .board-container {
         margin: 16px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .message {
+            margin: 8px 0px;
+            font-weight: 700;
+            color: green;
+        }
     }
 }

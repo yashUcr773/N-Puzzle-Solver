@@ -6,7 +6,7 @@
         <div class="input-container">
             <div class="text">
                 <input placeholder="Enter puzzle size (9,16..)" type="text" name="text" class="input"
-                    id="player-puzzle-size-input">
+                    id="player-puzzle-size-input" [(ngModel)]="inputValue">
                 <p class="input-error" *ngIf="showPuzzleError">Puzzle size should be perfect square</p>
             </div>
             <button class="generate-button" (click)="generatePuzzle()">Generate</button>
@@ -14,7 +14,12 @@
 
     </div>
     <div class="board-container" *ngIf="displayPuzzle">
-        <app-board #board [puzzleSize]=puzzleSize [puzzleState]=puzzleState [solutionState]=solutionState
-            [solutionState]=solutionState [displayPuzzle]=displayPuzzle></app-board>
+        <div class="board">
+            <app-board #board [puzzleSize]=puzzleSize [puzzleState]=puzzleState [solutionState]=solutionState
+                [solutionState]=solutionState [displayPuzzle]=displayPuzzle (solvedEvent)="solvedEvent($event)"></app-board>
+        </div>
+        <div class="message" *ngIf="puzzleSolved">
+            <p>Solved!!</p>
+        </div>
     </div>
 </div>

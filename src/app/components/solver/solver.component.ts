@@ -19,8 +19,8 @@ export class SolverComponent implements OnInit {
 
     ngOnInit(): void {
         this.puzzleSize = 9
-        this.puzzleState = this.boardHelperService.generateRandomStateFromSize(this.puzzleSize)
         this.solutionState = this.boardHelperService.generateDefaultSolutionStateFromSize(this.puzzleSize)
+        this.puzzleState = this.boardHelperService.generateRandomStateFromSize(this.puzzleSize, this.solutionState)
         this.mode = 'Solve'
     }
 

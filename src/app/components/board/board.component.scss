@@ -13,7 +13,14 @@
     grid-template-columns: repeat(var(--nrows), var(--cell_width));
     grid-template-rows: repeat(var(--nrows), var(--cell_width));
 
-    --cell_width: 64px;
+    --cell_width: 48px;
+    font-size: 24px;
+
+    @media (min-width:500px) {
+        --cell_width: 64px;
+        font-size: 36px;
+    }
+
     --nrows: 3;
 
     .tile {
@@ -27,7 +34,6 @@
         cursor: pointer;
 
         border-radius: 16px;
-        font-size: 36px;
 
         transition: transform .5s ease;
 
