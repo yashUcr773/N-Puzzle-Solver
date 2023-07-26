@@ -3,8 +3,14 @@ import { Injectable } from '@angular/core'
 @Injectable()
 export class BoardHelperService {
 
-    generateRandomStateFromSize(size: number) {
-        return this.shuffleArray(this.generateArray(size));
+    generateRandomStateFromSize(size: number, solvedState: number[]) {
+
+        let state = this.shuffleArray(this.generateArray(size));
+        while (!this.isNPuzzleSolvable(state) || this.checkIfSolved(state, solvedState)) {
+            state = this.shuffleArray(this.generateArray(size));
+        }
+        return state
+
     }
 
     generateDefaultSolutionStateFromSize(size: number) {
@@ -29,6 +35,45 @@ export class BoardHelperService {
 
     generateArray(size: number) {
         return Array.from({ length: size }, (_, index) => index);
+    }
+
+    checkIfSolved(puzzleState: number[], solvedState: number[]) {
+        let x = puzzleState.join('');
+        let y = solvedState.join('');
+        return x == y;
+    }
+
+    isNPuzzleSolvable(puzzle_array: number[]) {
+        const n = puzzle_array.length;
+        let flatArray = puzzle_array // Flatten the 2D array into a 1D array
+        let inversionCount = 0;
+        let blankTileRow = 0;
+
+        // Calculate the inversion count and find the row number of the blank tile
+        for (let i = 0; i < n * n - 1; i++) {
+            if (flatArray[i] === 0) {
+                blankTileRow = Math.floor(i / n) + 1;
+                continue;
+            }
+            for (let j = i + 1; j < n * n; j++) {
+                if (flatArray[j] !== 0 && flatArray[i] > flatArray[j]) {
+                    inversionCount++;
+                }
+            }
+        }
+
+        // Check if the puzzle is solvable based on the inversion count and blank tile row
+        if (n % 2 === 1) {
+            // For odd-sized puzzle
+            return inversionCount % 2 === 0;
+        } else {
+            // For even-sized puzzle
+            if (blankTileRow % 2 === 0) {
+                return inversionCount % 2 !== 0;
+            } else {
+                return inversionCount % 2 === 0;
+            }
+        }
     }
 
 

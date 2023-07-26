@@ -58,11 +58,16 @@
         </div>
         <div class="content">
             <div class="mode-selector">
-                <p [routerLink]="'./Play'" routerLinkActive="current-active">Play</p>
-                <p [routerLink]="'./Solve'" routerLinkActive="current-active">Solve</p>
+                <p (click)="setActiveMode('Play')" [ngClass]="{'current-active':activeMode=='Play'}">Play</p>
+                <p (click)="setActiveMode('Solve')" [ngClass]="{'current-active':activeMode=='Solve'}">Solve</p>
             </div>
             <div class="content-body">
-                <router-outlet></router-outlet>
+                <ng-container *ngIf="activeMode=='Play'">
+                    <app-player></app-player>
+                </ng-container>
+                <ng-container *ngIf="activeMode=='Solve'">
+                    <app-solver></app-solver>
+                </ng-container>
             </div>
         </div>
     </div>
