@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    --text_color: #41474C;
+    --bg_color: #fafbf5;
+    margin: 0;
+    padding: 0;
+    background: var(--bg_color);
+    color: var(--text_color);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1em;
+}
+
+body {
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+
+}
