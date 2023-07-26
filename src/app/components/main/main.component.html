@@ -1,0 +1,71 @@
+<div class="main-container">
+    <div class="parent">
+        <div class="header">
+            <div class="title">
+                <h1>N Puzzle Solver</h1>
+                <div class="links-container">
+                    <div class="github" title="View Source" (click)="launchLink(social_links.github_source)">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-github">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="more" title="View More Projects" (click)="launchLink(social_links.main_website)">
+                        <svg class='svg-logo-circle' width="184" height="184" viewBox="0 0 184 184" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle class='logo-circle' cx="92" cy="92" r="80" stroke="black" stroke-width="2" />
+                            <path class='logo-name'
+                                d="M29.8899 89.0164L29.932 88.9968L29.9722 88.9734L40.8213 82.6513L39.854 85.9023L39.8513 85.9113L39.8488 85.9203C39.0106 88.9439 37.491 92.0107 35.2649 95.1211C33.0339 98.2384 30.6197 100.753 28.028 102.682L28.022 102.687C25.444 104.635 23.3064 105.507 21.5741 105.531C20.8561 105.408 20.1673 104.963 19.5214 104.01C18.9209 103.08 18.5625 101.676 18.5625 99.6875C18.5625 98.0144 19.4571 96.2158 21.5631 94.287C23.6894 92.3711 26.4571 90.6102 29.8899 89.0164ZM33.0147 68.9785C38.6469 65.3086 43.6879 61.1828 48.1348 56.6004L42.1865 75.231L4.62271 95.2898L4.62268 95.2897L4.61249 95.2953C2.65559 96.3697 1.70312 98.1872 1.70312 100.531C1.70312 102.819 2.50468 104.84 4.07597 106.551L4.07657 106.552C5.62611 108.236 7.48588 109.454 9.64367 110.196L9.64815 110.197C11.8006 110.926 14.2085 111.281 16.8594 111.281C19.5193 111.281 22.2484 110.892 25.044 110.121C38.3088 106.546 48.5341 95.0706 55.8616 76.1324L74.6654 59.3715L75 59.0732V58.625V53.375V51.105L73.3251 52.6371L57.6462 66.979L73.4227 4.54185L73.7372 3.29688H72.4531H62.2812H62.119L61.965 3.34819C61.6484 3.45372 61.43 3.66579 61.3014 3.81194C61.159 3.97373 61.0328 4.16416 60.9201 4.35936C60.6938 4.75127 60.4587 5.27364 60.2132 5.90145C59.7195 7.16415 59.1351 8.98091 58.4606 11.3338L58.4594 11.3381C57.1485 15.9887 56.2518 19.3996 55.7758 21.5555L51.5126 39.1236L51.512 39.126C50.8005 42.0906 49.3414 45.0102 47.1017 47.8855L47.1008 47.8866C44.8788 50.7479 42.3752 53.1279 39.5912 55.0343L39.587 55.0372C36.7985 56.9677 33.9727 58.5092 31.1096 59.6666C28.2422 60.8258 25.812 61.375 23.7969 61.375C23.3272 61.375 22.7525 61.1129 22.1011 60.1379C21.4382 59.1142 21.1406 58.1458 21.1406 57.2188C21.1406 55.8827 21.6619 53.0998 22.7847 48.7499C23.8959 44.4448 25.5662 38.7126 27.7985 31.5474L27.7988 31.5464C29.7662 25.2071 31.0862 20.6838 31.7507 17.9953C32.4343 15.3545 33.2115 12.5877 34.0825 9.69454L34.0834 9.69173C34.5225 8.21749 34.8552 7.03409 35.079 6.14693C35.2899 5.31095 35.4375 4.61702 35.4375 4.20312C35.4375 3.77646 35.3133 3.36474 35.0482 3.00987C34.7921 2.66712 34.4461 2.43225 34.0832 2.27036C33.3811 1.95712 32.4496 1.84375 31.3906 1.84375C29.1982 1.84375 27.2632 2.3681 25.6351 3.46324L6.37567 16.0217L6.3579 16.0333L6.34064 16.0456C5.44478 16.6855 4.9375 17.5871 4.9375 18.6875C4.9375 19.5293 5.10448 20.3937 5.69914 20.9884L5.71774 21.007L5.73729 21.0245C6.11728 21.3665 6.63189 21.7031 7.25 21.7031C7.80982 21.7031 8.28227 21.4668 8.65501 21.1294L9.03012 20.9044L9.05784 20.8877L9.08442 20.8694L21.0165 12.6176L16.9934 24.3109C15.2456 29.2424 13.976 32.9875 13.1884 35.5381C12.8743 36.4804 12.2812 38.2754 11.4096 40.9215L11.4095 40.9215L11.4063 40.9316C10.561 43.5927 9.95955 45.6324 9.60798 47.0387L9.60537 47.0491L9.60299 47.0596C9.29209 48.4276 8.79343 50.5314 8.10613 53.3744C7.39956 56.297 7.04688 59.2979 7.04688 62.375C7.04688 66.8759 7.798 70.3433 9.50611 72.5497L9.51232 72.5576C11.2214 74.7201 13.4413 75.8438 16.1094 75.8438C20.419 75.8438 26.0829 73.4637 33.012 68.9802L33.0147 68.9785Z"
+                                stroke="black" stroke-width="2" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="header-content">
+                <div class="desc">
+                    <div class="desc-title">
+                        <p>Description</p>
+                    </div>
+                    <div class="desc-body">
+                        <p>
+                            The N-puzzle, also known as the sliding puzzle, is a classic puzzle game that involves a
+                            square
+                            grid
+                            with numbered tiles. The goal is to rearrange the tiles from a given scrambled state to a
+                            specific
+                            target state by sliding them into the empty space one move at a time. The empty space acts
+                            as a
+                            buffer, allowing adjacent tiles to be moved into it.</p>
+                    </div>
+
+                </div>
+                <div class="rules">
+                    <div class="rules-title">
+                        <p>Rules</p>
+                    </div>
+                    <div class="rules-body">
+                        <ul>
+                            <li>Only one tile can be moved at a time, and it can only be moved into the empty space.
+                            </li>
+                            <li>Tiles can be moved vertically or horizontally but not diagonally.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="mode-selector">
+                <p [routerLink]="'./Play'" routerLinkActive="current-active">Play</p>
+                <p [routerLink]="'./Solve'" routerLinkActive="current-active">Solve</p>
+            </div>
+            <div class="content-body">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+
+    <a id="external_link"></a>
+</div>
