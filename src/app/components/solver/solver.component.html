@@ -1,3 +1,50 @@
-<!-- <app-board [puzzleSize]=puzzleSize [puzzleState]=puzzleState [solutionState]=solutionState
-    [solutionState]=solutionState></app-board> -->
-    solver
+<div class="content-container">
+    <div class="header-container">
+        <div class="title">
+            <p>Enter the Initial State and a Goal State and let me find the best possible moves.</p>
+        </div>
+        <div class="input-container">
+
+            <div class="input-state state">
+                <p class="header">Initial State</p>
+                <p class="desc">
+                    Enter space seperated input state, indicate blank with 0. For Example. 1 2 3 4 0 5 6 7 8
+                </p>
+                <div class="text">
+
+                    <input placeholder="Initial State" type="text" name="text" class="input"
+                        id="solver-puzzle-initial-input" [(ngModel)]="inputConfig.enteredValue">
+                    <p class="input-error error" *ngIf="inputConfig.inputError">Enter Valid Numbers</p>
+                </div>
+                <button class="generate-button" (click)="generateInitialPuzzle()">Generate</button>
+                <div class="board-container" *ngIf="inputConfig.displayPuzzle">
+                    <app-board #board [puzzleSize]=inputConfig.puzzleSize [puzzleState]=inputConfig.puzzleState
+                        [solutionState]=inputConfig.solutionState [solutionState]=inputConfig.solutionState
+                        [displayPuzzle]=inputConfig.displayPuzzle [mode]=inputConfig.mode></app-board>
+                </div>
+            </div>
+
+            <div class="goal-state state">
+                <p class="header">Goal State</p>
+                <p class="desc">
+                    Enter space seperated input state, indicate blank with 0. For Example. 1 2 3 4 5 6 7 8 0
+                </p>
+                <div class="text">
+
+                    <input placeholder="Goal State" type="text" name="text" class="input" id="solver-puzzle-goal-input"
+                        [(ngModel)]="goalConfig.enteredValue">
+                    <p class="input-error error" *ngIf="goalConfig.inputError">Enter Valid Numbers</p>
+                </div>
+                <button class="generate-button" (click)="generateGoalPuzzle()">Generate</button>
+                <div class="board-container" *ngIf="goalConfig.displayPuzzle">
+                    <app-board #board [puzzleSize]=goalConfig.puzzleSize [puzzleState]=goalConfig.puzzleState
+                        [solutionState]=goalConfig.solutionState [solutionState]=goalConfig.solutionState
+                        [displayPuzzle]=goalConfig.displayPuzzle [mode]=inputConfig.mode></app-board>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>

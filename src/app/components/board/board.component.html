@@ -1,7 +1,7 @@
 <div class="puzzle" [style.--nrows]="rowSize" *ngIf="displayPuzzle">
     <ng-container *ngFor="let tile of puzzleState, let i=index">
         <div class="tile"
-            [ngClass]="{'empty': tile == 0, 'error':puzzleState[i]!=solutionState[i], 'success':puzzleState[i]==solutionState[i]}"
+            [ngClass]="{'empty': tile == 0, 'error':mode =='Play' && puzzleState[i]!=solutionState[i], 'success':mode =='Play' &&puzzleState[i]==solutionState[i]}"
             id="n-puzzle-tile-{{i}}" (click)="moveTile(i)">{{tile}}</div>
     </ng-container>
 </div>

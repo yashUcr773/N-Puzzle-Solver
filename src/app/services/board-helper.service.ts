@@ -76,5 +76,22 @@ export class BoardHelperService {
         }
     }
 
+    validatePuzzleInput(puzzle_array: number[]) {
+        let l = puzzle_array.length;
+
+        if (l < 2 || Math.sqrt(l) * Math.sqrt(l) != l) {
+            return false;
+        }
+
+        let s_puzzle = new Set(puzzle_array);
+        let s_solution = new Set(this.generateDefaultSolutionStateFromSize(l));
+
+        if ([...s_puzzle].sort().join('') == [...s_solution].sort().join('')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

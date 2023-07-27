@@ -1,0 +1,100 @@
+.content-container {
+
+    border-top: 2px solid var(--text_color);
+    padding: 8px;
+
+    .header-container {
+
+        .title {
+            margin: 12px 0px;
+
+            p {
+                font-weight: 700;
+            }
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-start;
+            @media (min-width:600px) {
+                flex-direction: row;
+
+            }
+
+            .state {
+
+                flex: 1 1 0;
+                padding: 8px;
+
+                &.input-state {
+                    border: none;
+
+                    @media (min-width:600px) {
+                        border-right: 2px solid var(--text_color);
+                    }
+                }
+
+                .header {
+                    font-size: 1.5em;
+                    font-weight: 700;
+                    text-align: center;
+                }
+
+                .desc {
+                    margin: 12px 0px;
+                }
+
+                .text {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    width: fit-content;
+
+                    .input {
+                        min-height: 36px;
+                        border-radius: 8px;
+                        border: 0;
+                        outline: auto grey;
+                        padding: 8px;
+                        font-size: 20px;
+                        width: 100%;
+
+                        @media (min-width:350px) {
+                            width: fit-content;
+                        }
+
+                        &:focus {
+                            box-shadow: 0 0 48px rgb(255, 255, 255);
+                        }
+                    }
+
+                    .input-error {
+                        color: red;
+                    }
+                }
+
+
+                .generate-button {
+                    background: transparent;
+                    outline: none;
+                    text-decoration: none;
+                    cursor: pointer;
+                    font-size: 20px;
+                    border: 2px solid var(--text_color);
+                    border-radius: 16px;
+                    padding: 8px 12px;
+                    margin: 8px 0px;
+                }
+            }
+
+        }
+
+        .board-container {
+            display: flex;
+            justify-content: center;
+            margin: 16px 8px;
+        }
+    }
+}

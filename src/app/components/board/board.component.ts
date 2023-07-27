@@ -35,11 +35,14 @@ export class BoardComponent implements OnInit {
 
     ngOnInit(): void {
         this.rowSize = Math.sqrt(this.puzzleSize);
-
     }
 
 
     moveTile(index: number) {
+
+        if (this.mode != 'Play') {
+            return;
+        }
 
         let blankIndex = -1;
         let r = Math.floor(index / this.rowSize);
