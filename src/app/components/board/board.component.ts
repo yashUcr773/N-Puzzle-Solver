@@ -47,26 +47,38 @@ export class BoardComponent implements OnInit {
         let blankIndex = -1;
         let r = Math.floor(index / this.rowSize);
         let c = index % this.rowSize;
+        let transitionClass = "";
 
         if (c != 0 && this.puzzleState[index - 1] == 0) {
             // check if left is not edge and can move left
             blankIndex = index - 1
+            transitionClass = 'moveRight';
         }
         else if (c != this.rowSize - 1 && this.puzzleState[index + 1] == 0) {
             // check if right is not edge and check if can move right
             blankIndex = index + 1
+            transitionClass = 'moveLeft';
+
         } else if (r != this.rowSize - 1 && this.puzzleState[index + this.rowSize] == 0) {
             // check if bottom is not edge and check if can move bottom
             blankIndex = index + this.rowSize
+            transitionClass = 'moveUp';
+
         } else if (r != 0 && this.puzzleState[index - this.rowSize] == 0) {
             // check if top is not edge and check if can move top
             blankIndex = index - this.rowSize
+            transitionClass = 'moveDown';
+
         }
 
 
         if (blankIndex != -1) {
+            document.querySelector('#n-puzzle-tile-' + index)?.classList.add(transitionClass);
             this.puzzleState[blankIndex] = this.puzzleState[index]
             this.puzzleState[index] = 0
+            setTimeout(() => {
+                document.querySelector('#n-puzzle-tile-' + blankIndex)?.classList.remove(transitionClass);
+            }, 300);
         }
 
         if (this.boardHelperService.checkIfSolved(this.puzzleState, this.solutionState)) {

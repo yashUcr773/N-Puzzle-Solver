@@ -52,5 +52,61 @@
 
         }
 
+        &.moveUp {
+            animation: moveup 0.2s ease forwards;
+        }
+
+        &.moveLeft {
+            animation: moveLeft 0.2s ease forwards;
+        }
+
+        &.moveDown {
+            animation: moveDown 0.2s ease forwards;
+        }
+
+        &.moveRight {
+            animation: moveRight 0.2s ease forwards;
+        }
+
+    }
+}
+
+@keyframes moveup {
+    from {
+        transform: translate(0px, -72px);
+    }
+
+    to {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes moveDown {
+    from {
+        transform: translate(0px, 72px);
+    }
+
+    to {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes moveRight {
+    from {
+        transform: translate(72px, 0px);
+    }
+
+    to {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes moveLeft {
+    from {
+        transform: translate(-72px, 0px);
+    }
+
+    to {
+        transform: translate(0px, 0px);
     }
 }
