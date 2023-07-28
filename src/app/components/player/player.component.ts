@@ -17,7 +17,6 @@ export class PlayerComponent implements OnInit {
     displayPuzzle = false;
     inputValue = "";
     puzzleSolved = false;
-    generatedOnce = false;
 
     constructor(private boardHelperService: BoardHelperService,
         private ref: ChangeDetectorRef) {
@@ -25,11 +24,8 @@ export class PlayerComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (!this.generatedOnce) {
-            this.inputValue = "9";
-            this.generatePuzzle();
-            this.generatedOnce = true;
-        }
+        this.inputValue = "9";
+        this.generatePuzzle();
     }
 
     @HostListener('window:keydown', ['$event'])

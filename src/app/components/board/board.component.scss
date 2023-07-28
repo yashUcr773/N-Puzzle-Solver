@@ -1,56 +1,146 @@
-.puzzle {
-    background: #81683E;
-    border: 8px solid #937667;
-    display: grid;
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
 
-    height: fit-content;
-    width: fit-content;
-    box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.2);
-    padding: 8px;
-    grid-gap: 8px;
-    user-select: none;
+    .puzzle {
+        background: #81683E;
+        border: 8px solid #937667;
+        display: grid;
 
-    grid-template-columns: repeat(var(--nrows), var(--cell_width));
-    grid-template-rows: repeat(var(--nrows), var(--cell_width));
+        height: fit-content;
+        width: fit-content;
+        box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        grid-gap: 8px;
+        user-select: none;
 
-    --cell_width: 48px;
-    font-size: 24px;
+        grid-template-columns: repeat(var(--nrows), var(--cell_width));
+        grid-template-rows: repeat(var(--nrows), var(--cell_width));
 
-    @media (min-width:500px) {
-        --cell_width: 64px;
-        font-size: 36px;
+        --cell_width: 48px;
+        font-size: 24px;
+
+        @media (min-width:500px) {
+            --cell_width: 64px;
+            font-size: 36px;
+        }
+
+        --nrows: 3;
+
+        .tile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+
+            background: white;
+            cursor: pointer;
+
+            border-radius: 16px;
+
+            transition: transform .5s ease;
+
+            &.empty {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            &.error {
+                background-color: #feae96;
+
+            }
+
+            &.success {
+                background-color: #3bb78f;
+
+            }
+
+            &.moveUp {
+                animation: moveup 0.2s ease forwards;
+            }
+
+            &.moveLeft {
+                animation: moveLeft 0.2s ease forwards;
+            }
+
+            &.moveDown {
+                animation: moveDown 0.2s ease forwards;
+            }
+
+            &.moveRight {
+                animation: moveRight 0.2s ease forwards;
+            }
+
+        }
     }
 
-    --nrows: 3;
+    .buttons-container {
 
-    .tile {
         display: flex;
-        align-items: center;
         justify-content: center;
-        width: 100%;
-        height: 100%;
+        align-items: center;
+        gap: 16px;
 
-        background: white;
-        cursor: pointer;
+        button {
+            background-color: transparent;
+            border: 2px solid var(--text_color);
+            padding: 8px 12px;
+            font-size: 24px;
+            border-radius: 16px;
+            cursor: pointer;
 
-        border-radius: 16px;
-
-        transition: transform .5s ease;
-
-        &.empty {
-            opacity: 0;
-            pointer-events: none;
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
-        &.error {
-            background-color: #feae96;
+        .solve {}
 
-        }
+        .resolve {}
+    }
 
-        &.success {
-            background-color: #3bb78f;
+}
 
-        }
+@keyframes moveup {
+    from {
+        transform: translate(0px, -72px);
+    }
 
+    to {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes moveDown {
+    from {
+        transform: translate(0px, 72px);
+    }
+
+    to {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes moveRight {
+    from {
+        transform: translate(72px, 0px);
+    }
+
+    to {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes moveLeft {
+    from {
+        transform: translate(-72px, 0px);
+    }
+
+    to {
+        transform: translate(0px, 0px);
     }
 }
