@@ -48,14 +48,14 @@ export class SolverComponent implements OnInit {
     }
 
     solverAlgorithms: any = {
-        '1': 'Uniform Cost Search',
+        '1': 'A* with Misplaced Tile Distance',
         '2': 'A* with Manhattan Distance',
-        '3': 'A* with Misplaced Tile Distance'
+        '3': 'Uniform Cost Search',
     }
     solverAlgorithmsToEnum: any = {
-        '1': Heuristic.UNIFORM,
+        '1': Heuristic.MISPLACED,
         '2': Heuristic.MANHATTAN,
-        '3': Heuristic.MISPLACED,
+        '3': Heuristic.UNIFORM,
     }
 
     errorConfig = {
