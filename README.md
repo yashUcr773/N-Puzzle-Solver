@@ -13,3 +13,5 @@
 - [ ] Add a webworker to push solver to secondary thread.
 - [ ] Add option to add custom puzzle in player to let user play a puzzle.
 - [ ] Add option to move the generated puzzle to solver without need to re-enter it. 
+- [ ] Add a moves counter and timer to player. 
+- [ ] Add information about how much time it will take to find solution, average times, max times, average and max depth. 

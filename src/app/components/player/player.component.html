@@ -16,10 +16,19 @@
     <div class="board-container" *ngIf="displayPuzzle">
         <div class="board">
             <app-board #board [puzzleSize]=puzzleSize [puzzleState]=puzzleState [solutionState]=solutionState
-                [solutionState]=solutionState [displayPuzzle]=displayPuzzle (solvedEvent)="solvedEvent($event)"></app-board>
+                [solutionState]=solutionState [displayPuzzle]=displayPuzzle
+                (solvedEvent)="solvedEvent($event)"></app-board>
         </div>
         <div class="message" *ngIf="puzzleSolved">
             <p>Solved!!</p>
         </div>
     </div>
+
+    <div class="buttons-container">
+        <button class="btn move-button" (click)="resetToOriginal()">Reset</button>
+        <button class="btn move-button" (click)="movePuzzleToSolver()"
+            title="In case you were not able to solve it and would like to see the solution. Click me!">Move puzzle to
+            Solver</button>
+    </div>
+
 </div>

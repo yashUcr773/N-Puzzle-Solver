@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
+import { ChangeDetectorRef, Component, OnInit, EventEmitter, Input } from '@angular/core'
 import { BoardHelperService } from 'src/app/services/board-helper.service';
 import { DIRECTIONS_MAP, Heuristic } from 'src/app/constants/solverConstants';
 
@@ -10,6 +10,9 @@ import { DIRECTIONS_MAP, Heuristic } from 'src/app/constants/solverConstants';
 export class SolverComponent implements OnInit {
 
 
+    @Input()
+    moveToSolverEvent: EventEmitter<any> | undefined;
+    x: any = undefined;
 
     inputConfig: stateConfig = {
         enteredValue: "",
@@ -77,6 +80,7 @@ export class SolverComponent implements OnInit {
         this.goalConfig.enteredValue = "1 2 3 4 5 6 7 8 0";
         this.generateInitialPuzzle();
         this.generateGoalPuzzle();
+        this.moveToSolverEventSubscriber();
     }
 
     generateInitialPuzzle() {
@@ -194,6 +198,25 @@ export class SolverComponent implements OnInit {
 
     }
 
+    moveToSolverEventSubscriber() {
+        if (this.moveToSolverEvent) {
+            this.x = this.moveToSolverEvent.subscribe((event) => {
+                console.log('11')
+                let input = JSON.parse(JSON.stringify(event.puzzleState.join(' ')));
+                let goal = this.boardHelperService.generateDefaultSolutionStateFromSize(event.puzzleState.length).join(' ');
+                this.inputConfig.enteredValue = input;
+                this.goalConfig.enteredValue = goal;
+                this.generateInitialPuzzle();
+                this.generateGoalPuzzle();
+            });
+        }
+    }
+
+    ngOnDestroy(): void {
+        if (this.moveToSolverEvent) {
+            this.x.unsubscribe();
+        }
+    }
 
 }
 
