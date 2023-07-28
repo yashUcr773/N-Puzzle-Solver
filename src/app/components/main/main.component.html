@@ -63,10 +63,10 @@
             </div>
             <div class="content-body">
                 <ng-container *ngIf="activeMode=='Play'">
-                    <app-player></app-player>
+                    <app-player (movePuzzleToSolverEvent)="movePuzzleToSolverEvent($event)"></app-player>
                 </ng-container>
                 <ng-container *ngIf="activeMode=='Solve'">
-                    <app-solver></app-solver>
+                    <app-solver [moveToSolverEvent]="moveToSolverEvent"></app-solver>
                 </ng-container>
             </div>
         </div>
