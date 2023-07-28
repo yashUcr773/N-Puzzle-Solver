@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core'
+import { NPuzzleSolverService } from './n-puzzle-solver.service';
+import { Heuristic } from '../constants/solverConstants';
+
 
 @Injectable()
 export class BoardHelperService {
+
+    constructor(private nPuzzleSolverService: NPuzzleSolverService) {
+
+    }
 
     generateRandomStateFromSize(size: number, solvedState: number[]) {
 
@@ -38,9 +45,7 @@ export class BoardHelperService {
     }
 
     checkIfSolved(puzzleState: number[], solvedState: number[]) {
-        let x = puzzleState.join('');
-        let y = solvedState.join('');
-        return x == y;
+        return this.nPuzzleSolverService.checkIfSolved(puzzleState, solvedState);
     }
 
     isNPuzzleSolvable(puzzle_array: number[]) {
@@ -91,6 +96,10 @@ export class BoardHelperService {
         } else {
             return false;
         }
+    }
+
+    solveNPuzzle(input_state: number[], goal_state: number[], heuristic_measure: Heuristic) {
+        this.nPuzzleSolverService.solveNPuzzle(input_state, goal_state, heuristic_measure);
     }
 
 

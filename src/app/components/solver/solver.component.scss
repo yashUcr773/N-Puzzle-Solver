@@ -97,4 +97,66 @@
             margin: 16px 8px;
         }
     }
+
+    .solver-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top: 2px solid var(--text_color);
+        gap: 32px;
+        margin: 12px 0px;
+        padding: 12px 0px;
+
+        .info {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+
+            .dropdown-container {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                .dropdown {
+                    select {
+                        width: fit-content;
+                        height: 32px;
+                        padding: 4px;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        background: var(--bg_color);
+                    }
+                }
+
+            }
+
+            .solve-button {
+                background: transparent;
+                outline: none;
+                text-decoration: none;
+                cursor: pointer;
+                font-size: 20px;
+                border: 2px solid var(--text_color);
+                border-radius: 16px;
+                padding: 8px 12px;
+                margin: 8px 0px;
+            }
+        }
+
+        .error-container {
+            .error {
+                color: red;
+                a{
+                    text-decoration: underline;
+                    &:visited {
+                        color: var(--text_color);
+                    }
+                }
+            }
+        }
+
+    }
 }
