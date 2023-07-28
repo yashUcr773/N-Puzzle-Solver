@@ -24,7 +24,7 @@ export class BoardHelperService {
         let arr = this.generateArray(size);
         arr.shift();
         arr.push(0);
-        return arr
+        return JSON.parse(JSON.stringify(arr));
     }
 
     shuffleArray(array: number[]) {
@@ -99,7 +99,7 @@ export class BoardHelperService {
     }
 
     solveNPuzzle(input_state: number[], goal_state: number[], heuristic_measure: Heuristic) {
-        this.nPuzzleSolverService.solveNPuzzle(input_state, goal_state, heuristic_measure);
+        return this.nPuzzleSolverService.solveNPuzzle(input_state, goal_state, heuristic_measure);
     }
 
 

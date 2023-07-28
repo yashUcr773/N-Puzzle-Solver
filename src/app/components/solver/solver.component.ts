@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { BoardHelperService } from 'src/app/services/board-helper.service';
-import { Heuristic } from 'src/app/constants/solverConstants';
+import { DIRECTIONS_MAP, Heuristic } from 'src/app/constants/solverConstants';
 
 @Component({
     selector: 'app-solver',
@@ -32,6 +32,16 @@ export class SolverComponent implements OnInit {
         inputError: false
     }
 
+    solutionConfig: solutionConfig = {
+        showSolvedBoard: false,
+        displayPuzzle: false,
+        puzzleSize: 9,
+        puzzleState: [],
+        solutionState: [],
+        mode: 'Run',
+        path: []
+    }
+
     constructor(private boardHelperService: BoardHelperService,
         private ref: ChangeDetectorRef) {
 
@@ -54,8 +64,16 @@ export class SolverComponent implements OnInit {
         noSolutionFound: false,
     }
 
+    totalNodes = 0;
+    maxQueueSize = 0;
+    path: string = "";
+    depth = 0;
+    showSolverLoader = false;
+    solutionFound = false;
+    solutionNotFound = false;
+
     ngOnInit(): void {
-        this.inputConfig.enteredValue = "5 2 1 3 8 4 6 0 7";
+        this.inputConfig.enteredValue = "1 2 3 4 0 5 6 7 8";
         this.goalConfig.enteredValue = "1 2 3 4 5 6 7 8 0";
         this.generateInitialPuzzle();
         this.generateGoalPuzzle();
@@ -113,8 +131,15 @@ export class SolverComponent implements OnInit {
 
     solvePuzzle() {
 
+        this.errorConfig.parityError = false;
+        this.showSolverLoader = true;
+        this.solutionFound = false;
+        this.solutionNotFound = false;
+        this.solutionConfig.showSolvedBoard = false;
+
         this.generateInitialPuzzle();
         this.generateGoalPuzzle();
+        this.ref.detectChanges();
 
         let dropdown = document.getElementById("solver-algorithm-dropdown") as HTMLSelectElement;
         let value = dropdown.value;
@@ -131,10 +156,41 @@ export class SolverComponent implements OnInit {
         let isSolvable = isGoalDefault && this.boardHelperService.isNPuzzleSolvable(this.inputConfig.puzzleState);
         if (!isSolvable) {
             this.errorConfig.parityError = true;
+            this.showSolverLoader = false;
+            this.solutionFound = false;
+            this.solutionNotFound = false;
+            this.solutionConfig.showSolvedBoard = false;
             return;
         }
 
-        this.boardHelperService.solveNPuzzle(this.inputConfig.puzzleState, this.goalConfig.puzzleState, this.solverAlgorithmsToEnum[value]);
+        this.ref.detectChanges();
+        setTimeout(() => {
+
+            let [finalNode, maxQueueSize, totalNodes]: any = this.boardHelperService.solveNPuzzle(this.inputConfig.puzzleState, this.goalConfig.puzzleState, this.solverAlgorithmsToEnum[value]);
+
+            if (finalNode == undefined) {
+                this.solutionNotFound = true;
+            } else {
+                this.solutionFound = true;
+            }
+
+            this.totalNodes = totalNodes;
+            this.maxQueueSize = maxQueueSize;
+            this.path = finalNode.path.map((elem: string) => DIRECTIONS_MAP[elem]).join('--> ');
+            this.depth = finalNode.depth;
+            this.showSolverLoader = false;
+            this.solutionConfig = {
+                displayPuzzle: true,
+                showSolvedBoard: true,
+                puzzleSize: finalNode.state_length,
+                puzzleState: JSON.parse(JSON.stringify(this.inputConfig.puzzleState)),
+                solutionState: JSON.parse(JSON.stringify(this.goalConfig.puzzleState)),
+                mode: 'Run',
+                path: finalNode.path
+            }
+            this.ref.detectChanges();
+            document.querySelector('.solved-puzzle-container')?.scrollIntoView({ behavior: 'smooth' });
+        })
 
     }
 
@@ -147,6 +203,16 @@ interface stateConfig {
     puzzleSize: number,
     puzzleState: number[],
     solutionState: number[],
-    mode: string,
+    mode: 'Play' | 'Solve' | 'Run',
     inputError: boolean
+}
+
+interface solutionConfig {
+    showSolvedBoard: boolean,
+    displayPuzzle: boolean,
+    puzzleSize: number,
+    puzzleState: number[],
+    solutionState: number[],
+    mode: 'Play' | 'Solve' | 'Run',
+    path: string[]
 }

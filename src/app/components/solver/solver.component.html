@@ -48,7 +48,7 @@
 
     </div>
 
-    <div class="solver-container">
+    <div class="solver-information-container">
         <div class="info">
 
             <div class="dropdown-container">
@@ -72,6 +72,40 @@
                 The goal state can not be reached from this input state. <a target="_blank"
                     href="https://en.wikipedia.org/wiki/15_puzzle#Solvability">Know More.</a>
             </p>
+        </div>
+        <div class="solver-loader" *ngIf="showSolverLoader">
+            <div class="text">Searching for an optimal solution!.</div>
+            <div class="banter-loader">
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+                <div class="banter-loader__box"></div>
+            </div>
+        </div>
+        <div class="solver-result-container" *ngIf="solutionFound || solutionNotFound">
+            <p class="solution-found" *ngIf="solutionFound">Solution Found.</p>
+            <p class="solution-not-found" *ngIf="solutionNotFound">Solution Not Found. <a target="_blank"
+                    href="https://en.wikipedia.org/wiki/15_puzzle#Solvability">Know More.</a></p>
+        </div>
+        <div class="solved-puzzle-container" *ngIf="solutionConfig.showSolvedBoard">
+            <div class="info">
+                <p>Total Nodes Expanded: {{totalNodes}}</p>
+                <p>Total Nodes in Queue: {{maxQueueSize}}</p>
+                <p>Path to Solve. Move the blank</p>
+                <p>{{path}}</p>
+                <p>Depth of solution: {{depth}}</p>
+            </div>
+            <div class="board-container" *ngIf="solutionConfig.displayPuzzle">
+                <app-board #board [puzzleSize]=solutionConfig.puzzleSize [puzzleState]=solutionConfig.puzzleState
+                    [solutionState]=solutionConfig.solutionState [solutionState]=solutionConfig.solutionState
+                    [displayPuzzle]=solutionConfig.displayPuzzle [mode]=solutionConfig.mode
+                    [path]=solutionConfig.path></app-board>
+            </div>
         </div>
     </div>
 </div>

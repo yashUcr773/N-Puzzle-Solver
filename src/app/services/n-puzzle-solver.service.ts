@@ -7,9 +7,7 @@ export class NPuzzleSolverService {
 
 
     solveNPuzzle(input_state: number[], goal_state: number[], heuristic_measure: Heuristic) {
-
-        let [final_node, max_queue_size, total_nodes_expanded]: any = this.general_search(input_state, goal_state, this.queueing_function, heuristic_measure);
-
+        return this.general_search(input_state, goal_state, this.queueing_function, heuristic_measure);
     }
 
     checkIfSolved(puzzleState: number[], solvedState: number[]) {
