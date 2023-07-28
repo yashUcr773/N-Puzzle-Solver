@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnInit } from '@angular/core';
 import { links } from 'src/app/constants/links';
 import { AppHelperService } from 'src/app/services/apphelper.service';
 
@@ -7,10 +7,13 @@ import { AppHelperService } from 'src/app/services/apphelper.service';
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
 
     social_links = links;
     activeMode: ActiveModes = 'Play';
+
+    moveToSolverEvent = new EventEmitter<any>();
+
     constructor(private appHelperService: AppHelperService,
         private ref: ChangeDetectorRef) {
 
@@ -46,6 +49,15 @@ export class MainComponent {
         localStorage.setItem('preferences', JSON.stringify(LSObject));
 
         this.ref.detectChanges();
+    }
+
+    movePuzzleToSolverEvent(event: any) {
+        this.setActiveMode('Solve');
+        this.ref.detectChanges();
+        setTimeout(() => {
+
+            this.moveToSolverEvent.emit(event);
+        })
     }
 
 

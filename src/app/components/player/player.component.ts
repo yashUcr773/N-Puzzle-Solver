@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, HostListener, Output, EventEmitter } from '@angular/core';
 import { BoardHelperService } from 'src/app/services/board-helper.service';
 
 @Component({
@@ -17,7 +17,10 @@ export class PlayerComponent implements OnInit {
     displayPuzzle = false;
     inputValue = "";
     puzzleSolved = false;
-    generatedOnce = false;
+    originalState = this.puzzleState;
+
+    @Output() movePuzzleToSolverEvent = new EventEmitter<any>();
+
 
     constructor(private boardHelperService: BoardHelperService,
         private ref: ChangeDetectorRef) {
@@ -25,11 +28,8 @@ export class PlayerComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (!this.generatedOnce) {
-            this.inputValue = "9";
-            this.generatePuzzle();
-            this.generatedOnce = true;
-        }
+        this.inputValue = "9";
+        this.generatePuzzle();
     }
 
     @HostListener('window:keydown', ['$event'])
@@ -49,6 +49,7 @@ export class PlayerComponent implements OnInit {
             this.puzzleSize = size;
             this.solutionState = this.boardHelperService.generateDefaultSolutionStateFromSize(this.puzzleSize);
             this.puzzleState = this.boardHelperService.generateRandomStateFromSize(this.puzzleSize, this.solutionState);
+            this.originalState = JSON.parse(JSON.stringify(this.puzzleState))
             this.mode = 'Play';
             this.showPuzzleError = false;
             this.displayPuzzle = true;
@@ -63,5 +64,13 @@ export class PlayerComponent implements OnInit {
         this.puzzleSolved = event;
     }
 
+    movePuzzleToSolver() {
+        this.movePuzzleToSolverEvent.emit({ puzzleState: this.puzzleState });
+    }
+
+    resetToOriginal() {
+        this.puzzleState = JSON.parse(JSON.stringify(this.originalState));
+        this.ref.detectChanges();
+    }
 
 }

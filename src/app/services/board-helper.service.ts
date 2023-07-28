@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core'
+import { NPuzzleSolverService } from './n-puzzle-solver.service';
+import { Heuristic } from '../constants/solverConstants';
+
 
 @Injectable()
 export class BoardHelperService {
+
+    constructor(private nPuzzleSolverService: NPuzzleSolverService) {
+
+    }
 
     generateRandomStateFromSize(size: number, solvedState: number[]) {
 
@@ -17,7 +24,7 @@ export class BoardHelperService {
         let arr = this.generateArray(size);
         arr.shift();
         arr.push(0);
-        return arr
+        return JSON.parse(JSON.stringify(arr));
     }
 
     shuffleArray(array: number[]) {
@@ -38,9 +45,7 @@ export class BoardHelperService {
     }
 
     checkIfSolved(puzzleState: number[], solvedState: number[]) {
-        let x = puzzleState.join('');
-        let y = solvedState.join('');
-        return x == y;
+        return this.nPuzzleSolverService.checkIfSolved(puzzleState, solvedState);
     }
 
     isNPuzzleSolvable(puzzle_array: number[]) {
@@ -74,6 +79,27 @@ export class BoardHelperService {
                 return inversionCount % 2 === 0;
             }
         }
+    }
+
+    validatePuzzleInput(puzzle_array: number[]) {
+        let l = puzzle_array.length;
+
+        if (l < 2 || Math.sqrt(l) * Math.sqrt(l) != l) {
+            return false;
+        }
+
+        let s_puzzle = new Set(puzzle_array);
+        let s_solution = new Set(this.generateDefaultSolutionStateFromSize(l));
+
+        if ([...s_puzzle].sort().join('') == [...s_solution].sort().join('')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    solveNPuzzle(input_state: number[], goal_state: number[], heuristic_measure: Heuristic) {
+        return this.nPuzzleSolverService.solveNPuzzle(input_state, goal_state, heuristic_measure);
     }
 
 

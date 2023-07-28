@@ -1,4 +1,5 @@
 .content-container {
+    border-top: 2px solid var(--text_color);
 
     .header-container {
 
@@ -62,7 +63,7 @@
     }
 
     .board-container {
-        margin: 16px 0px;
+        margin: 48px 0px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -72,6 +73,25 @@
             margin: 8px 0px;
             font-weight: 700;
             color: green;
+        }
+    }
+
+    .buttons-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+
+        .btn {
+            background: transparent;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 20px;
+            border: 2px solid var(--text_color);
+            border-radius: 16px;
+            padding: 8px 12px;
         }
     }
 }

@@ -1,7 +1,14 @@
-<div class="puzzle" [style.--nrows]="rowSize" *ngIf="displayPuzzle">
-    <ng-container *ngFor="let tile of puzzleState, let i=index">
-        <div class="tile"
-            [ngClass]="{'empty': tile == 0, 'error':puzzleState[i]!=solutionState[i], 'success':puzzleState[i]==solutionState[i]}"
-            id="n-puzzle-tile-{{i}}" (click)="moveTile(i)">{{tile}}</div>
-    </ng-container>
+<div class="container container-{{randomHash}}">
+    <div class="puzzle" [style.--nrows]="rowSize" *ngIf="displayPuzzle">
+        <ng-container *ngFor="let tile of puzzleState, let i=index">
+            <div class="tile"
+                [ngClass]="{'empty': tile == 0, 'error':(mode =='Play' || mode =='Run' )&& puzzleState[i]!=solutionState[i], 'success':(mode =='Play' || mode =='Run' ) &&puzzleState[i]==solutionState[i]}"
+                id="n-puzzle-tile-{{i}}" (click)="moveTile(i)">{{tile}}</div>
+        </ng-container>
+    </div>
+    <div class="buttons-container" *ngIf="mode == 'Run'">
+        <button class="solve" (click)="playSolution()">Solve</button>
+        <button class="resolve" (click)="rePlaySolution()">Replay Solution</button>
+        <button class="reset" (click)="resetState()">Reset to Original</button>
+    </div>
 </div>
